@@ -1,3 +1,7 @@
+import json
+import os
+
+
 class Contatto:
     def __init__(
         self, codice, nome, cognome, data_nascita, recapiti_telefonici, nr_recapiti
@@ -16,6 +20,35 @@ class Recapito:
         self.descrizione = descrizione
 
 
+FILE_DATI = "rubrica.json"
+
+
+def salva_dati(codice):
+    dati = {
+        "codice": codice,
+        "contatti": [],
+    }
+    for contatto in rubrica:
+        dati_contatto = {
+            "codice": contatto.codice,
+            "nome": contatto.nome,
+            "cognome": contatto.cognome,
+            "data_nascita": contatto.data_nascita,
+            "recapiti_telefonici": [],
+        }
+        for recapito in contatto.recapiti_telefonici:
+            dati_recapito = {
+                "numero": recapito.numero,
+                "descrizione": recapito.descrizione,
+            }
+            dati_contatto["recapiti_telefonici"].append(dati_recapito)
+
+        dati["contatti"].append(dati_contatto)
+
+    with open(FILE_DATI, "w", encoding="utf-8") as f:
+        json.dump(dati, f, indent=4, ensure_ascii=False)
+
+
 codice = 1
 rubrica = []
 
@@ -24,7 +57,7 @@ def nuovo_contatto(codice):
     nome = input("Inserici il nome: ")
     cognome = input("Inserisci il cognome: ")
     data_nascita = input("Inserisci data nascita: ")
-    nr_recapiti_da_aggiungere = int(input("Quanti recapiti vuoi aggungere? (max 10)"))
+    nr_recapiti_da_aggiungere = int(input("Quanti recapiti vuoi aggungere? (max 10) "))
     if nr_recapiti_da_aggiungere <= 10:
         lista_recapiti = []
         for i in range(nr_recapiti_da_aggiungere):
@@ -54,6 +87,18 @@ def cerca_contatto(cognome):
         if persona.cognome == cognome:
             print(f"Cognome: {persona.cognome}")
 
+
+def visualizza_rubrica():
+    for contatto in rubrica:
+        print(
+            f"Nome: {contatto.nome} Cognome: {contatto.cognome} Data nascita: {contatto.data_nascita}"
+        )
+        for recapito in contatto.recapiti_telefonici:
+            print(
+                f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}"
+            )
+
+
 run = True
 while run:
     print("------RUBRICA------")
@@ -67,10 +112,12 @@ while run:
     match scelta:
         case 0:
             run = False
+            salva_dati(codice)
             print("------A PRESTO------")
         case 1:
             nuovo_contatto(codice)
             codice += 1
+            salva_dati(codice)
         case 2:
             print("2")
         case 3:
@@ -83,6 +130,6 @@ while run:
             cognome = input("Inserisci il cognome: ")
             cerca_contatto(cognome)
         case 4:
-            print("4")
+            visualizza_rubrica()
         case _:
             print("NON VALIO")
