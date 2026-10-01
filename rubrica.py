@@ -49,6 +49,11 @@ def cerca_numero(nr_telefono):
     return None
 
 
+def cerca_contatto(cognome):
+    for persona in rubrica:
+        if persona.cognome == cognome:
+            print(f"Cognome: {persona.cognome}")
+
 run = True
 while run:
     print("------RUBRICA------")
@@ -69,12 +74,14 @@ while run:
         case 2:
             print("2")
         case 3:
-            nr_telefono = input("Inserici il numero di telefono: ")
-            esito_contatto = cerca_numero(nr_telefono)
-            if esito_contatto == None:
-                print("Il numero non e trovato!")
-            else:
-                print(esito_contatto)
+            ##nr_telefono = input("Inserici il numero di telefono: ")
+            ##esito_contatto = cerca_numero(nr_telefono)
+            ##if esito_contatto == None:
+            ##   print("Il numero non e trovato!")
+            ##else:
+            ##   print(esito_contatto)
+            cognome = input("Inserisci il cognome: ")
+            cerca_contatto(cognome)
         case 4:
             print("4")
         case _:
