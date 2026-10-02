@@ -35,6 +35,7 @@ def salva_dati(codice):
             "cognome": contatto.cognome,
             "data_nascita": contatto.data_nascita,
             "recapiti_telefonici": [],
+            "nr_recapiti": contatto.nr_recapiti,
         }
         for recapito in contatto.recapiti_telefonici:
             dati_recapito = {
@@ -49,8 +50,38 @@ def salva_dati(codice):
         json.dump(dati, f, indent=4, ensure_ascii=False)
 
 
-codice = 1
+def carica_dati():
+    if not os.path.exists(FILE_DATI):
+        return 1
+    with open(FILE_DATI, "r", encoding="utf-8") as f:
+        try:
+            dati = json.load(f)
+        except json.JSONDecodeError:
+            return 1
+        for contatto in dati["contatti"]:
+            lista_recapiti = []
+
+            for recapito in contatto["recapiti_telefonici"]:
+                r = Recapito(
+                    recapito["numero"],
+                    recapito["descrizione"],
+                )
+                lista_recapiti.append(r)
+
+            contatto = Contatto(
+                contatto["codice"],
+                contatto["nome"],
+                contatto["cognome"],
+                contatto["data_nascita"],
+                lista_recapiti,
+                contatto["nr_recapiti"],
+            )
+            rubrica.append(contatto)
+        return dati["codice"]
+
+
 rubrica = []
+codice = carica_dati()
 
 
 def nuovo_contatto(codice):
