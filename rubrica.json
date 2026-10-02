@@ -1,0 +1,184 @@
+{
+    "codice": 12,
+    "contatti": [
+        {
+            "codice": 1,
+            "nome": "Alex",
+            "cognome": "Re",
+            "data_nascita": "15",
+            "recapiti_telefonici": [
+                {
+                    "numero": "348648",
+                    "descrizione": "Cell"
+                },
+                {
+                    "numero": "1023013",
+                    "descrizione": "Tel"
+                }
+            ],
+            "nr_recapiti": 2
+        },
+        {
+            "codice": 2,
+            "nome": "Marco",
+            "cognome": "Rossi",
+            "data_nascita": "22",
+            "recapiti_telefonici": [
+                {
+                    "numero": "349",
+                    "descrizione": "Cell"
+                },
+                {
+                    "numero": "104",
+                    "descrizione": "Casa"
+                }
+            ],
+            "nr_recapiti": 2
+        },
+        {
+            "codice": 3,
+            "nome": "Luca",
+            "cognome": "Bianchi",
+            "data_nascita": "8",
+            "recapiti_telefonici": [
+                {
+                    "numero": "350",
+                    "descrizione": "Cell"
+                }
+            ],
+            "nr_recapiti": 1
+        },
+        {
+            "codice": 4,
+            "nome": "Sara",
+            "cognome": "Verdi",
+            "data_nascita": "17",
+            "recapiti_telefonici": [
+                {
+                    "numero": "351",
+                    "descrizione": "Cell"
+                },
+                {
+                    "numero": "105",
+                    "descrizione": "Ufficio"
+                }
+            ],
+            "nr_recapiti": 2
+        },
+        {
+            "codice": 5,
+            "nome": "Anna",
+            "cognome": "Conti",
+            "data_nascita": "30",
+            "recapiti_telefonici": [
+                {
+                    "numero": "352",
+                    "descrizione": "Cell"
+                }
+            ],
+            "nr_recapiti": 1
+        },
+        {
+            "codice": 6,
+            "nome": "Davide",
+            "cognome": "Ferrari",
+            "data_nascita": "12",
+            "recapiti_telefonici": [
+                {
+                    "numero": "353",
+                    "descrizione": "Cell"
+                },
+                {
+                    "numero": "106",
+                    "descrizione": "Casa"
+                }
+            ],
+            "nr_recapiti": 2
+        },
+        {
+            "codice": 7,
+            "nome": "Giulia",
+            "cognome": "Romano",
+            "data_nascita": "5",
+            "recapiti_telefonici": [
+                {
+                    "numero": "354",
+                    "descrizione": "Cell"
+                }
+            ],
+            "nr_recapiti": 1
+        },
+        {
+            "codice": 8,
+            "nome": "Matteo",
+            "cognome": "Ricci",
+            "data_nascita": "19",
+            "recapiti_telefonici": [
+                {
+                    "numero": "355",
+                    "descrizione": "Cell"
+                },
+                {
+                    "numero": "107",
+                    "descrizione": "Ufficio"
+                }
+            ],
+            "nr_recapiti": 2
+        },
+        {
+            "codice": 9,
+            "nome": "Elena",
+            "cognome": "Marino",
+            "data_nascita": "27",
+            "recapiti_telefonici": [
+                {
+                    "numero": "356",
+                    "descrizione": "Cell"
+                }
+            ],
+            "nr_recapiti": 1
+        },
+        {
+            "codice": 10,
+            "nome": "Andrea",
+            "cognome": "Galli",
+            "data_nascita": "11",
+            "recapiti_telefonici": [
+                {
+                    "numero": "357",
+                    "descrizione": "Cell"
+                },
+                {
+                    "numero": "108",
+                    "descrizione": "Casa3"
+                },
+                {
+                    "numero": "105858",
+                    "descrizione": "Casa"
+                },
+                {
+                    "numero": "102288",
+                    "descrizione": "Casa2"
+                },
+                {
+                    "numero": "1108",
+                    "descrizione": "Casa4"
+                }
+            ],
+            "nr_recapiti": 5
+        },
+        {
+            "codice": 11,
+            "nome": "Chiara",
+            "cognome": "Moretti",
+            "data_nascita": "24",
+            "recapiti_telefonici": [
+                {
+                    "numero": "358",
+                    "descrizione": "Cell"
+                }
+            ],
+            "nr_recapiti": 1
+        }
+    ]
+}
