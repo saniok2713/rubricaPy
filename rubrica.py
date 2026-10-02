@@ -111,9 +111,11 @@ def cerca_numero(nr_telefono):
 
 
 def cerca_contatto(cognome):
+    lista_contatti = []
     for persona in rubrica:
         if persona.cognome == cognome:
-            print(f"Cognome: {persona.cognome}")
+            lista_contatti.append(persona)
+    return lista_contatti
 
 
 def visualizza_rubrica():
@@ -156,7 +158,11 @@ while run:
             ##else:
             ##   print(esito_contatto)
             cognome = input("Inserisci il cognome: ")
-            cerca_contatto(cognome)
+            contatti_trovati = cerca_contatto(cognome)
+            for contatto in contatti_trovati:
+                print(f"Nome: {contatto.nome} Cognome: {contatto.cognome}")
+                for recapito in contatto.recapiti_telefonici:
+                    print(f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}")
         case 4:
             visualizza_rubrica()
         case _:

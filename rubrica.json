@@ -1,5 +1,5 @@
 {
-    "codice": 12,
+    "codice": 13,
     "contatti": [
         {
             "codice": 1,
@@ -176,6 +176,19 @@
                 {
                     "numero": "358",
                     "descrizione": "Cell"
+                }
+            ],
+            "nr_recapiti": 1
+        },
+        {
+            "codice": 12,
+            "nome": "Kerka",
+            "cognome": "Re",
+            "data_nascita": "16",
+            "recapiti_telefonici": [
+                {
+                    "numero": "254875",
+                    "descrizione": "Gabbia"
                 }
             ],
             "nr_recapiti": 1
