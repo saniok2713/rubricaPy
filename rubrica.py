@@ -58,24 +58,21 @@ def carica_dati():
             dati = json.load(f)
         except json.JSONDecodeError:
             return 1
-        for contatto in dati["contatti"]:
-            lista_recapiti = []
-
-            for recapito in contatto["recapiti_telefonici"]:
-                r = Recapito(
-                    recapito["numero"],
-                    recapito["descrizione"],
-                )
-                lista_recapiti.append(r)
-
+        for dati_contatto in dati["contatti"]:
             contatto = Contatto(
-                contatto["codice"],
-                contatto["nome"],
-                contatto["cognome"],
-                contatto["data_nascita"],
-                lista_recapiti,
-                contatto["nr_recapiti"],
+                dati_contatto["codice"],
+                dati_contatto["nome"],
+                dati_contatto["cognome"],
+                dati_contatto["data_nascita"],
+                [],
+                dati_contatto["nr_recapiti"],
             )
+            for dati_recapito in dati_contatto["recapiti_telefonici"]:
+                recapito = Recapito(
+                    dati_recapito["numero"],
+                    dati_recapito["descrizione"],
+                )
+                contatto.recapiti_telefonici.append(recapito)
             rubrica.append(contatto)
         return dati["codice"]
 
