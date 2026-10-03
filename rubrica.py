@@ -85,20 +85,60 @@ def nuovo_contatto(codice):
     nome = input("Inserici il nome: ")
     cognome = input("Inserisci il cognome: ")
     data_nascita = input("Inserisci data nascita: ")
-    nr_recapiti_da_aggiungere = int(input("Quanti recapiti vuoi aggungere? (max 10) "))
-    if nr_recapiti_da_aggiungere <= 10:
-        lista_recapiti = []
-        for i in range(nr_recapiti_da_aggiungere):
-            nr_telefono = input("Inserisci il numero:")
-            descrizione = input("Descrizione: ")
-            recapito = Recapito(nr_telefono, descrizione)
-            lista_recapiti.append(recapito)
+    lista_recapiti = []
+    esito_contatto = controlla_contatto(nome, cognome)
+    if esito_contatto is None:
+        nr_recapiti_da_aggiungere = int(
+            input("Quanti recapiti vuoi aggungere? (max 10) ")
+        )
+        if nr_recapiti_da_aggiungere <= 10:
+            for i in range(nr_recapiti_da_aggiungere):
+                nr_telefono = input("Inserisci il numero:")
+                descrizione = input("Descrizione: ")
+                recapito = Recapito(nr_telefono, descrizione)
+                lista_recapiti.append(recapito)
+        else:
+            print("Numero max recapiti superato!")
+        contatto = Contatto(
+            codice,
+            nome,
+            cognome,
+            data_nascita,
+            lista_recapiti,
+            nr_recapiti_da_aggiungere,
+        )
+        rubrica.append(contatto)
     else:
-        print("Numero max recapiti superato!")
-    contatto = Contatto(
-        codice, nome, cognome, data_nascita, lista_recapiti, nr_recapiti_da_aggiungere
-    )
-    rubrica.append(contatto)
+        numero_recapiti_attuale = esito_contatto.nr_recapiti
+        numero_recapiti_disponibili = 10 - numero_recapiti_attuale
+        print("Il contatto e gia presente nella rubrica!")
+        risposta = input("Vuoi aggingere un'altro recapito? (si/no) ")
+        if risposta == "no":
+            return
+        elif risposta == "si":
+            print(f"Puoi aggiungere altri {numero_recapiti_disponibili} recapiti!")
+            nr_recapiti_da_aggiungere = int(
+                input(
+                    f"Quanti recapiti vuoi aggiungere? (max {numero_recapiti_disponibili}) "
+                )
+            )
+            if nr_recapiti_da_aggiungere > numero_recapiti_disponibili:
+                print("Hai superato il limite disponibile!")
+            else:
+                for i in range(nr_recapiti_da_aggiungere):
+                    nr_telefono = input("Inserisci il numero:")
+                    descrizione = input("Descrizione: ")
+                    recapito = Recapito(nr_telefono, descrizione)
+                    lista_recapiti.append(recapito)
+                    esito_contatto.nr_recapiti += 1
+            esito_contatto.recapiti_telefonici.extend(lista_recapiti)
+
+
+def controlla_contatto(nome, cognome):
+    for contatto in rubrica:
+        if contatto.nome == nome and contatto.cognome == cognome:
+            return contatto
+    return None
 
 
 def cerca_numero(nr_telefono):
@@ -138,7 +178,7 @@ while run:
     print("4: Visualizza rubrica")
     print("0: CHIUDI")
 
-    scelta = int(input("Scelta:"))
+    scelta = int(input("Scelta: "))
     match scelta:
         case 0:
             run = False
@@ -162,7 +202,9 @@ while run:
             for contatto in contatti_trovati:
                 print(f"Nome: {contatto.nome} Cognome: {contatto.cognome}")
                 for recapito in contatto.recapiti_telefonici:
-                    print(f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}")
+                    print(
+                        f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}"
+                    )
         case 4:
             visualizza_rubrica()
         case _:
