@@ -169,6 +169,13 @@ def visualizza_rubrica():
             )
 
 
+def nuovo_recapito(codice):
+    for contatto in rubrica:
+        if codice == contatto.codice:
+            return contatto
+    return None
+
+
 run = True
 while run:
     print("------RUBRICA------")
@@ -189,7 +196,21 @@ while run:
             codice += 1
             salva_dati(codice)
         case 2:
-            print("2")
+            codice_contatto = int(input("Inserisci il codice del contatto: "))
+            esito_contatto = nuovo_recapito(codice_contatto)
+            if esito_contatto == None:
+                print("Conatto non trovato!")
+            else:
+                print(f"Nome: {esito_contatto.nome} Cognome: {esito_contatto.cognome}")
+                for recapito in esito_contatto.recapiti_telefonici:
+                    print(
+                        f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}"
+                    )
+                recapito_numero = input("Inserici il numero: ")
+                recapito_desc = input("Inserici descrizione: ")
+                recapito = Recapito(recapito_numero, recapito_desc)
+                esito_contatto.recapiti_telefonici.append(recapito)
+                esito_contatto.nr_recapiti += 1
         case 3:
             ##nr_telefono = input("Inserici il numero di telefono: ")
             ##esito_contatto = cerca_numero(nr_telefono)
