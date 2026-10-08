@@ -99,6 +99,7 @@ def nuovo_contatto(codice):
                 lista_recapiti.append(recapito)
         else:
             print("Numero max recapiti superato!")
+            nr_recapiti_da_aggiungere = 0
         contatto = Contatto(
             codice,
             nome,
@@ -202,15 +203,18 @@ while run:
                 print("Conatto non trovato!")
             else:
                 print(f"Nome: {esito_contatto.nome} Cognome: {esito_contatto.cognome}")
-                for recapito in esito_contatto.recapiti_telefonici:
-                    print(
-                        f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}"
-                    )
-                recapito_numero = input("Inserici il numero: ")
-                recapito_desc = input("Inserici descrizione: ")
-                recapito = Recapito(recapito_numero, recapito_desc)
-                esito_contatto.recapiti_telefonici.append(recapito)
-                esito_contatto.nr_recapiti += 1
+                if esito_contatto.nr_recapiti <10:
+                    for recapito in esito_contatto.recapiti_telefonici:
+                        print(
+                            f"--------Nr.Telefono: {recapito.numero} Descrizione: {recapito.descrizione}"
+                        )
+                    recapito_numero = input("Inserici il numero: ")
+                    recapito_desc = input("Inserici descrizione: ")
+                    recapito = Recapito(recapito_numero, recapito_desc)
+                    esito_contatto.recapiti_telefonici.append(recapito)
+                    esito_contatto.nr_recapiti += 1
+                else:
+                    print("Numero massimo di recapiti per contatto raggiunto!")
         case 3:
             ##nr_telefono = input("Inserici il numero di telefono: ")
             ##esito_contatto = cerca_numero(nr_telefono)
@@ -229,4 +233,4 @@ while run:
         case 4:
             visualizza_rubrica()
         case _:
-            print("NON VALIO")
+            print("NON VALIDO")
