@@ -132,7 +132,7 @@ def nuovo_contatto(codice):
                     recapito = Recapito(nr_telefono, descrizione)
                     lista_recapiti.append(recapito)
                     esito_contatto.nr_recapiti += 1
-            esito_contatto.recapiti_telefonici.extend(lista_recapiti)
+                esito_contatto.recapiti_telefonici.extend(lista_recapiti)
 
 
 def controlla_contatto(nome, cognome):
